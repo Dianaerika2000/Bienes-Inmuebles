@@ -47,4 +47,9 @@ class Inmueble extends Model
     {
         return $this->belongsTo(Inmueble::class,'idInmueble');
     }
+
+    // $inmueble -> images
+    public function images(){
+        return $this->hasMany(InmuebleImage::class);
+    }
 }

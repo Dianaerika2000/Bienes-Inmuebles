@@ -71,6 +71,10 @@
                                     @can('borrar-inmueble')
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                     @endcan
+
+                                    @can('ver-fotografia')
+                                        <a class="btn btn-warning" href="{{ route('imagenes.index', $inmueble->id)}}">Fotos</a>
+                                    @endcan
                                     </form>
                                 </td>
                             </tr>

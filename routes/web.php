@@ -10,6 +10,7 @@ use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\FotografiaController;
 use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\InmuebleController;
 use App\Http\Controllers\ReporteController;
@@ -43,5 +44,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('inmuebles', InmuebleController::class);
     Route::resource('reportes', ReporteController::class);
     Route::resource('revaluos', RevaluoController::class);
+
+    Route::get('inmuebles/{id}/imagenes', [ImageController::class, 'index'])->name('imagenes.index');
+    Route::post('inmuebles/{id}/imagenes', [ImageController::class, 'store'])->name('imagenes.store');
+    Route::delete('inmuebles/{id}/imagenes', [ImageController::class, 'destroy'])->name('imagenes.destroy');
 
 });
