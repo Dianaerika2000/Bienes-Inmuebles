@@ -52,7 +52,7 @@ class DireccionController extends Controller
 
     public function show(Direccion $direccion)
     {
-        //
+        dd($direccion->idDireccion);
     }
 
     public function edit(Direccion $direccione)

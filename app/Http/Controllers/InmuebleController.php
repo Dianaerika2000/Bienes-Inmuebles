@@ -98,9 +98,14 @@ class InmuebleController extends Controller
         return redirect()->route('inmuebles.index');
     }
 
-    public function show(Grupo $grupo)
+    public function show(Inmueble $inmueble)
     {
-        //
+        $direccion = Direccion::find($inmueble->idDireccion);
+        // dd($inmueble->idDireccion);
+        // dd($direccion);
+        $lat = $direccion->latitud;
+        $lng = $direccion->longitud;
+        return view('inmuebles.show', compact('direccion'));
     }
 
     public function edit(Inmueble $inmueble)

@@ -75,6 +75,10 @@
                                     @can('ver-fotografia')
                                         <a class="btn btn-warning" href="{{ route('imagenes.index', $inmueble->id)}}">Fotos</a>
                                     @endcan
+
+                                    @can('ver-direccion')
+                                        <a class="btn btn-success" href="{{ route('inmuebles.show', $inmueble)}}">Ubicación</a>
+                                    @endcan
                                     </form>
                                 </td>
                             </tr>
