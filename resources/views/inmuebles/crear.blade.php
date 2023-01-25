@@ -59,7 +59,7 @@
                                                 <select name="idInmueble" class="form-control" id="idInmueble">
                                                     <option value="">Seleccione un inmueble</option>
                                                     @foreach ($inmuebles as $inmueble)
-                                                        <option value="{{ $inmueble->id }}"> <b>PREFIJO: {{ \Illuminate\Support\Str::limit($inmueble->codigo, 5,'')}}</b>
+                                                        <option value="{{ $inmueble->id }}"> <b>PREFIJO: {{ \Illuminate\Support\Str::limit($inmueble->codigo, 3,'')}}</b>
                                                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                             DETALLE: {{ $inmueble->descripcionGlosa}} ({{ $inmueble->codigo}})
                                                         </option>

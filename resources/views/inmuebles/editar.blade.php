@@ -61,7 +61,7 @@
                                         <select name="idInmueble" class="form-control" id="idInmueble">
                                             <option value="">Seleccione un inmueble</option>
                                             @foreach ($inmuebles as $inmueble)
-                                                <option value="{{ $inmueble->id }}"> <b>PREFIJO: {{ \Illuminate\Support\Str::limit($inmueble->codigo, 5,'')}}</b>
+                                                <option value="{{ $inmueble->id }}"> <b>PREFIJO: {{ \Illuminate\Support\Str::limit($inmueble->codigo, 3,'')}}</b>
                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                     DETALLE: {{ $inmueble->descripcionGlosa}} ({{ $inmueble->codigo}})
                                                 </option>
@@ -207,7 +207,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 py-2">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                 <a class="btn btn-secondary" href="{{route('inmuebles.index')}}">Cancelar</a>
-                            </div>                          
+                            </div>
                         </div>
                     </form>
 

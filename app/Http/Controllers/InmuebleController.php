@@ -68,7 +68,7 @@ class InmuebleController extends Controller
 
         if($request->idInmueble!=null){
             $CodigoInmueble=Inmueble::where('id',$request->idInmueble)->first();
-            $CodigoInmueble=Str::limit($CodigoInmueble->codigo, 5,'');
+            $CodigoInmueble=Str::limit($CodigoInmueble->codigo, 3,'');
         }else{
             $CodigoInmueble=null;
         }
@@ -140,7 +140,7 @@ class InmuebleController extends Controller
 
         if($request->idInmueble!=null){
             $CodigoInmueble=Inmueble::where('id',$request->idInmueble)->first();
-            $CodigoInmueble=Str::limit($CodigoInmueble->codigo, 5,'');
+            $CodigoInmueble=Str::limit($CodigoInmueble->codigo, 3,'');
         }else{
             $CodigoInmueble=null;
         }
