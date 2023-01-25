@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('letra', [App\Http\Controllers\UsuarioController::class, 'updateLetra'])->name('letra');
     Route::get('reporteInmueblesView', [ReporteController::class, 'reporteInmueblesView'])->name('reporteV');
     Route::post('reporteInmueblesDoc', [ReporteController::class, 'reporteInmueblesDoc'])->name('reporteD');
+    Route::post('reporteInmueblesDocGrup', [ReporteController::class, 'reporteInmueblesDocGrupo'])->name('reporteDG');
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('responsables', ResponsableController::class);

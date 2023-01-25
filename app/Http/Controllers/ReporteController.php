@@ -102,6 +102,7 @@ class ReporteController extends Controller
         $revaluos = Revaluo::all();
         return view('reportes.reporteInmuebleView',compact('inmubles', 'revaluos'));
     }
+
     public function reporteInmueblesDoc(Request $request){
 
         $tipoBase = $request->get('tipo');
@@ -121,5 +122,22 @@ class ReporteController extends Controller
         $contador_reportes = Contador::where('nombre', 'contador_reporte')->first();
         $contador_reportes->update(['count' => $contador_reportes->count + 1]);
         return view('reportes.reporteRevaluoInmueble',compact('tipoBase','activos', 'desde', 'hasta', 'contador_reportes'));
+    }
+    public function reporteInmueblesDocGrupo(Request $request){
+
+        $tipoBase = $request->get('tipo');
+        $codigoB = $request->get('terreno');
+        $idB = Inmueble::where('codigo', '=', $codigoB)->value('id');
+
+        if ($request->get('tipo')=='edificios'){
+            $activos= Inmueble::where('idGrupo', '=', 1)->where('idInmueble','=', $idB)->get();
+            // dd($activos);
+        }else{
+            $activos= Inmueble::where('idGrupo', '=', 3)->where('idInmueble','=', $idB)->get();
+        }
+
+        $contador_reportes = Contador::where('nombre', 'contador_reporte')->first();
+        $contador_reportes->update(['count' => $contador_reportes->count + 1]);
+        return view('reportes.reporteGrupoInmueble',compact('tipoBase','activos','codigoB'));
     }
 }
