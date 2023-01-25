@@ -8,7 +8,6 @@ use App\Models\Inmueble;
 use App\Models\Revaluo;
 use Illuminate\Http\Request;
 use PhpParser\Lexer\TokenEmulator\ReverseEmulator;
-
 class RevaluoController extends Controller
 {
     function __construct()
@@ -21,7 +20,7 @@ class RevaluoController extends Controller
 
     public function index($id)
     {
-        // dd($id);
+        //$revaluos=Revaluo::paginate(10);
         $inmueble=Inmueble::find($id);
         $revaluos=Revaluo::where('idInmueble', $id)->get();
         $informes=Informe::all();
@@ -35,10 +34,10 @@ class RevaluoController extends Controller
         $inmueble = Inmueble::find($id);
         return view('revaluos.crear', compact('inmueble'));
     }
+
     public function store(Request $request, $id)
     {
         request()->validate([
-            // 'idInmueble'=>'required',
             'fechaRevaluo' => 'required',
             'costoActualizado' => 'required',
             'valorNeto' => 'required',

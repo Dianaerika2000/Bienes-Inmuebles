@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header" style="background-color: {{ auth()->user()->color}}">
-            <h3 class="page__heading">Editar Responsable</h3>
+            <h3 class="page__heading">Editar Revaluo</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -23,24 +23,18 @@
                                 </div>
                             @endif
 
+                            <div class="alert alert-success" role="alert">
+                                <strong>CODIGO DE INMUEBLE:&nbsp;&nbsp;</strong>{{$inmueble->codigo}}
+                            </div>
                     <form action="{{ route('revaluos.update',$revaluo->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="row">
 
-                            <div class="col-lg-12 col-sm-12 col-sm-11 col-xs-12">
-                                <label class="col-form-label col-md-12 col-sm-12 label-align" for="idInmueble">Código del Inmueble
-                                    <span class="required">*</span>
-                                </label>
-                                <select name="idInmueble" class="form-control" id="idInmueble">
-                                    <option value="">Seleccione un inmueble</option>
-                                    @foreach ($inmuebles as $inmueble)
-                                        <option value="{{ $inmueble->id }}"
-                                                {{old('idInmueble',$inmueble->id)== $revaluo->idInmueble ? 'selected':''}}>
-                                            {{ $inmueble->codigo}} - {{ $inmueble->descripcionGlosa}}
-                                        </option>
-                                    @endforeach
-                                </select>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="hidden" id="idInmueble" name="idInmueble" value = "{{$revaluo->idInmueble}}" class="form-control">
+                                </div>
                             </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -59,28 +53,14 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="costo">Costo (Bs)</label>
-                                    <input type="number" step='0.01' id="costo" name="costo" value = "{{$revaluo->costo}}" required="required" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="costo">Costo Actualizado (Bs)</label>
+                                    <label for="costo">Valor Actualizado en Revaluo (Bs)</label>
                                     <input type="number" step='0.01' id="costoActualizado" name="costoActualizado" value = "{{$revaluo->costoActualizado}}" required="required" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="costo">Depreciación Acumulada (Bs)</label>
-                                    <input type="number" step='0.01' id="depreciacionAcumulada" name="depreciacionAcumulada" value = "{{$revaluo->depreciacionAcumulada}}" required="required" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="costo">Valor Neto (Bs)</label>
+                                    <label for="costo">Valor anterior del Activo (Bs)</label>
                                     <input type="number" step='0.01' id="valorNeto" name="valorNeto" value = "{{$revaluo->valorNeto}}" required="required" class="form-control">
                                 </div>
                             </div>
@@ -92,7 +72,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 py-2">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                <a class="btn btn-secondary" href="{{route('revaluos.index')}}">Cancelar</a>
+                                <a class="btn btn-secondary" href="{{route('revaluos.index', $inmueble->id)}}">Cancelar</a>
                             </div>
                         </div>
                     </form>

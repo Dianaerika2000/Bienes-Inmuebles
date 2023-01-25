@@ -23,6 +23,15 @@
                                 </div>
                             @endif
 
+                            <div class="alert alert-success d-flex justify-content-between" role="alert">
+                                <div>
+                                    <strong>REVALUO DESCRIPCION:&nbsp;&nbsp;</strong>{{$revaluo->descripcion}}
+                                </div>
+                                <div>
+                                    <strong>VALOR ACT. DE REVALUO:&nbsp;&nbsp;</strong>{{$revaluo->costoActualizado}} Bs.
+                                </div>
+                            </div>
+
                     <form action="{{ route('informes.update',$informe->id) }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('PUT')
@@ -49,22 +58,22 @@
                                     <input type="date" name="fechaRealizada" value="{{$informe->fechaRealizada}}" class="form-control">
                                 </div>
                             </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <select name="idRevaluo" class="form-control" id="idRevaluo" required>
-                                        <option value="">Seleccione el reevaluo correspondiente</option>
-                                        @foreach($revaluos as $revaluo )
-                                            <option value="{{$revaluo->id}}"
-                                                    {{old('idRevaluo',$revaluo->id)== $informe->idRevaluo ? 'selected':''}}
-                                            >{{$revaluo->descripcion}} {{$revaluo->valorNeto}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="hidden" name="idRevaluo" class="form-control" value="{{$revaluo->id}}">
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="hidden" name="id" class="form-control" value="{{$informe->id}}">
+                                </div>
+                            </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-12 py-2">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                <a class="btn btn-secondary" href="{{route('informes.index')}}">Cancelar</a>
-                            </div>                           
+                                <a class="btn btn-secondary" href="{{route('informes.index', $revaluo->id)}}">Cancelar</a>
+                            </div>
                         </div>
                     </form>
 

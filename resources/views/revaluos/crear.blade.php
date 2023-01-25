@@ -23,7 +23,7 @@
                                 </div>
                             @endif
 
-                            <div class="alert alert-warning" role="alert">
+                            <div class="alert alert-success" role="alert">
                                 <strong>CODIGO DE INMUEBLE:</strong> &nbsp;{{$inmueble->codigo}}
                             </div>
 
@@ -31,27 +31,6 @@
                                 {{ csrf_field() }}
                                 {{--@csrf--}}
                                 <div class="row">
-{{--
-                                    <div class="col-lg-12 col-sm-12 col-sm-11 col-xs-12">
-                                        <label class="col-form-label col-md-12 col-sm-12 label-align" for="idInmueble">Código del Inmueble
-                                            <span class="required">*</span>
-                                        </label>
-                                        <select name="idInmueble" class="form-control" id="idInmueble">
-                                            <option value="">Seleccione un inmueble</option>
-                                            @foreach ($inmuebles as $inmueble)
-                                                <option value="{{ $inmueble->id }}">
-                                                    {{ $inmueble->codigo}} - DETALLE: {{ $inmueble->descripcionGlosa}}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div> --}}
-{{--
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="idInmueble">{{$inmueble->codigo}}</label>
-                                            <input style="display: none" type="date" name="idInmueble" id="idInmueble" class="form-control" value="{{$inmueble->id}}">
-                                        </div>
-                                    </div> --}}
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <label for="descripcion">Descripción</label>

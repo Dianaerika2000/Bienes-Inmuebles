@@ -198,36 +198,6 @@
             </a>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    {{-- @can('ver-revaluo')
-                        <a class="nav-link" href="{{ route('revaluos.index') }}"
-                            style="background-color: {{ auth()->user()->color }}">
-                            @if (auth()->user()->color === 'white' || auth()->user()->color === 'skyblue')
-                                <i class=" fas fa-book" style="color:black"></i><span style="color:black">Gestionar
-                                    Revaluos</span>
-                            @elseif(auth()->user()->color === 'black')
-                                <i class=" fas fa-book" style="color:white"></i><span style="color:white">Gestionar
-                                    Revaluos</span>
-                            @else
-                                <i class=" fas fa-book" style="color:#1c0f5e"></i><span
-                                    style="color:#1c0f5e">Gestionar Revaluos</span>
-                            @endif
-                        </a>
-                    @endcan --}}
-                    @can('ver-informe')
-                        <a class="nav-link" href="{{ route('informes.index') }}"
-                            style="background-color: {{ auth()->user()->color }}">
-                            @if (auth()->user()->color === 'white' || auth()->user()->color === 'skyblue')
-                                <i class=" fas fa-book" style="color:black"></i><span style="color:black">Gestionar
-                                    Informes</span>
-                            @elseif(auth()->user()->color === 'black')
-                                <i class=" fas fa-book" style="color:white"></i><span style="color:white">Gestionar
-                                    Informes</span>
-                            @else
-                                <i class=" fas fa-book" style="color:#1c0f5e"></i><span
-                                    style="color:#1c0f5e">Gestionar Informes</span>
-                            @endif
-                        </a>
-                    @endcan
                     @can('ver-reporte')
                         <a class="nav-link" href="{{ route('reportes.index') }}"
                             style="background-color: {{ auth()->user()->color }}">

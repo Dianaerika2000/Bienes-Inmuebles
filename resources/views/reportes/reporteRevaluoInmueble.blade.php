@@ -220,9 +220,7 @@
                 <thead {{-- contenteditable --}}>
                 <th width="40%">Descripción</th>
                 <th width="10%">Fecha Revaluo</th>
-                <th width="10%">Costo</th>
                 <th width="10%">Costo Actualizado</th>
-                <th width="10%">Depreciación</th>
                 <th width="10%">Valor Neto</th>
                 <th width="10%">Inmueble</th>
                 </thead>
@@ -232,9 +230,7 @@
                     <tr>
                         <td>{{ $activo->descripcion }}</td>
                         <td>{{ $activo->fechaRevaluo }}</td>
-                        <td>{{ $activo->costo }} Bs.</td>
                         <td>{{ $activo->costoActualizado }} Bs.</td>
-                        <td>{{ $activo->depreciacionAcumulada }} Bs.</td>
                         <td>{{ $activo->valorNeto }} Bs.</td>
                         <td>{{ $activo->inmueble->codigo }}</td>
                     </tr>

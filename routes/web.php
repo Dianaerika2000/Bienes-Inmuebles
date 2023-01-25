@@ -55,4 +55,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('inmuebles/{id}/revaluos/create', [RevaluoController::class, 'store'])->name('revaluos.store');
     Route::any('inmuebles/revaluos/edit/{id}', [RevaluoController::class, 'edit'])->name('revaluos.edit');
     Route::any('inmuebles/revaluos/edit/{id}', [RevaluoController::class, 'update'])->name('revaluos.update');
+
+    Route::get('inmuebles/revaluos/informes/{id}', [InformeController::class, 'index'])->name('informes.index');
+    Route::get('inmuebles/revaluos/informes/create/{id}', [InformeController::class, 'create'])->name('informes.create');
+    Route::post('inmuebles/revaluos/informes/create/{id}', [InformeController::class, 'store'])->name('informes.store');
+    Route::any('inmuebles/revaluos/informes/edit/{id}', [InformeController::class, 'edit'])->name('informess.edit');
+    Route::any('inmuebles/revaluos/informes/edit/{id}', [InformeController::class, 'update'])->name('informes.update');
 });

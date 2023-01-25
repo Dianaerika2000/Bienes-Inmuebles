@@ -29,6 +29,10 @@
                         @can('crear-revaluo')
                         <a class="btn btn-warning my-2" href="{{ route('revaluos.create',$inmueble->id) }}">Nuevo</a>
                         @endcan
+                        @can('ver-revaluo')
+                        <a class="btn btn-info" href="{{ route('inmuebles.index')}}">Volver a Inmuebles</a>
+                        @endcan
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead style="background-color:#2239E8">
@@ -56,6 +60,9 @@
                                         @method('DELETE')
                                     @can('borrar-revaluo')
                                         <button type="submit" class="btn btn-danger">Borrar</button>
+                                    @endcan
+                                    @can('ver-informe')
+                                        <a class="btn btn-success" href="{{ route('informes.index', $revaluo->id) }}">Informe</a>
                                     @endcan
                                     </form>
                                 </td>

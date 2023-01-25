@@ -28,8 +28,11 @@
                         <div class="card-body">
 
                         @can('crear-informe')
-                        <a class="btn btn-warning my-2" href="{{ route('informes.create') }}">Nuevo</a>
+                        <a class="btn btn-warning my-2" href="{{ route('informes.create', $revaluo->id) }}">Nuevo</a>
                         @endcan
+                        @can('ver-revaluo')
+                        <a class="btn btn-info" href="{{ route('revaluos.index', $revaluo->idInmueble)}}">Volver a Revaluos</a>
+                    @endcan
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead style="background-color:#2239E8">
@@ -37,11 +40,10 @@
                                     <th style="color:#fff;">Documento</th>
                                     <th style="color:#fff;">Descripción</th>
                                     <th style="color:#fff;">Fecha</th>
-                                    <th style="color:#fff;">Revaluo</th>
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
-                            @foreach ($informes as $informe)
+                                @foreach ($informes as $informe)
                             <tr>
                                 <td style="display: none;">{{ $informe->id }}</td>
                                 <td>
@@ -49,7 +51,6 @@
                                 </td>
                                 <td>{{ $informe->descripcion }}</td>
                                 <td>{{ $informe->fechaRealizada }}</td>
-                                <td>{{ $informe->reevaluo->descripcion }}</td>
                                 <td>
                                     <form action="{{ route('informes.destroy',$informe->id) }}" method="POST" class="form-delete">
                                     @can('editar-informe')

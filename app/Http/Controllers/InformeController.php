@@ -17,27 +17,29 @@ class InformeController extends Controller
         $this->middleware('permission:borrar-informe', ['only' => ['destroy']]);
     }
 
-    public function index()
+    public function index($id)
     {
         //$informes=Informe::paginate(10);
-        $informes=Informe::all();
+        // $revaluos=Revaluo::where('idInmueble', $id)->get();
+        $revaluo=Revaluo::find($id);
+        $informes=Informe::where('idRevaluo', $id)->get();
+        // dd($informe);
         $contador_informes=Contador::where('nombre',"contador_informe")->first();
         $contador_informes->update(['count'=>$contador_informes->count+1]);
-        return view('informes.index',compact('informes','contador_informes'));
+        return view('informes.index',compact('informes','contador_informes','revaluo'));
     }
 
-    public function create()
+    public function create($id)
     {
-        $revaluos = Revaluo::all();
-        return view('informes.crear', compact('revaluos'));
+        $revaluo=Revaluo::find($id);
+        return view('informes.crear', compact('revaluo'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         request()->validate([
             'url' => 'required',
             'fechaRealizada' => 'required',
-            'idRevaluo' => 'required',
         ]);
 
         $informe = new Informe();
@@ -54,7 +56,7 @@ class InformeController extends Controller
         $informe->save();
 
         //Informe::create($request->all() + ['url' => $informe]);
-        return redirect()->route('informes.index');
+        return redirect()->route('informes.index', $id);
     }
 
     public function show(Informe $informe)
@@ -64,11 +66,11 @@ class InformeController extends Controller
 
     public function edit(Informe $informe)
     {
-        $revaluos = Revaluo::all();
-        return view('informes.editar',compact('informe','revaluos'));
+        $revaluo = Revaluo::find($informe->idRevaluo);
+        return view('informes.editar',compact('informe','revaluo'));
     }
 
-    public function update(Request $request, Informe $informe)
+    public function update(Request $request, $id)
     {
         request()->validate([
             'url' => 'required',
@@ -76,7 +78,10 @@ class InformeController extends Controller
             'idRevaluo' => 'required',
         ]);
 
+        $informe=Informe::find($id);
+
         if ($request->hasFile('url')){
+
             $file=$request->file('url');
             $destinationPath='documentos/';
             $filename=$file->getClientOriginalName();
@@ -89,12 +94,12 @@ class InformeController extends Controller
         $informe->save();
 
         //$informe->update($request->all());
-        return redirect()->route('informes.index');
+        return redirect()->route('informes.index', $id);
     }
 
     public function destroy(Informe $informe)
     {
         $informe->delete();
-        return redirect()->route('informes.index');
+        return redirect()->route('informes.index', $informe->idRevaluo);
     }
 }
