@@ -30,6 +30,14 @@
             </div>
             <div class="card">
                 <div class="card-header bg-primary text-light">
+                    Revaluos de los inmuebles
+                </div>
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-primary text-light">
                     Revaluos de inmuebles
                 </div>
                 <div class="card-body">
@@ -171,3 +179,71 @@
         });
     </script>
 @endsection
+
+@section('scripts')
+    {{-- Estadisticas en barras --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const valores = JSON.parse('{!! json_encode($data) !!}');
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Valor Anterior - Edificios', 'Valor Actual - Edificios', 'Valor Anterior - Terrenos',
+                    'Valor Actual - Terrenos', 'Valor Anterior - Construcciones',
+                    'Valor Actual - Construcciones'
+                ],
+                datasets: [{
+                    label: 'Bienes Inmuebles (Bs.)',
+                    data: valores.data,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                backgroundColor: [
+                    'rgb(241, 102, 94)',
+                    'rgb(255, 0, 0)',
+                    'rgb(94, 190, 241)',
+                    'rgb(0, 0, 255)',
+                    'rgb(164, 238, 110)',
+                    'rgb(0, 255, 0)',
+                   
+                ],
+            },
+        });
+    </script>
+
+    {{-- Estadisticas en torta --}}
+    <script>
+        const donut = document.getElementById('estadisticasInmuebles');
+        const data = {
+            labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        new Chart(donut, {
+            type: 'doughnut',
+            data: data
+        });
+    </script>
+
+@stop

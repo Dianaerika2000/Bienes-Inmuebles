@@ -9,6 +9,7 @@ use App\Models\Revaluo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mockery\Undefined;
 
 class ReporteController extends Controller
 {
@@ -22,6 +23,47 @@ class ReporteController extends Controller
 
     public function index()
     {
+        $revaluosInmuebles = DB::table('revaluos')->pluck('idInmueble');
+        $revaluosInmueblesSinD = array_unique($revaluosInmuebles->toArray());
+        $valorActual=[];
+        $valorAnterior=[];
+        $data=[];
+        foreach($revaluosInmueblesSinD as $key => $revaluo){
+            $i = DB::table('inmuebles')->find($revaluo);
+            
+            if ($i->idGrupo === 1) {
+                // DB::table('revaluos')->sum('costoActualizado');
+                $aux = DB::table('revaluos')->where('idInmueble', '=', $revaluo)->sum('costoActualizado');
+                $valorActual['A'][] = $aux;
+                $aux2 = DB::table('revaluos')->where('idInmueble', '=', $revaluo)->sum('valorNeto');
+                $valorAnterior['A'][] = $aux2;
+            } elseif ($i->idGrupo === 2) {
+                $aux = DB::table('revaluos')->where('idInmueble', '=', $revaluo)->value('costoActualizado');
+                $valorActual['B'][] = $aux;
+                $aux2 = DB::table('revaluos')->where('idInmueble', '=', $revaluo)->sum('valorNeto');
+                $valorAnterior['B'][] = $aux2;
+                
+            } else {
+                $aux = DB::table('revaluos')->where('idInmueble', '=', $revaluo)->value('costoActualizado');
+                $valorActual['C'][] = $aux;
+                $aux2 = DB::table('revaluos')->where('idInmueble', '=', $revaluo)->sum('valorNeto');
+                $valorAnterior['C'][] = $aux2;
+            }
+        }
+        // $data['valorActualA'][]=array_sum($valorActual['A']);
+        // $data['valorActualB'][]=array_sum($valorActual['B']);
+        // $data['valorActualC'][]= array_sum($valorActual['C']);
+        // $data['valorAnteriorA'][]=array_sum($valorAnterior['A']);
+        // $data['valorAnteriorB'][]=array_sum($valorAnterior['B']);
+        // $data['valorAnteriorC'][]=array_sum($valorAnterior['C']);
+        $data['data'][] = array_sum($valorAnterior['A']);
+        $data['data'][] = array_sum($valorActual['A']);
+        $data['data'][]= array_sum($valorAnterior['B']);
+        $data['data'][]= array_sum($valorActual['B']);
+        $data['data'][]= array_sum($valorAnterior['C']);
+        $data['data'][]= array_sum($valorActual['C']);
+        // dd($data['data']);
+
         $usuarios = User::all();
         $contador_reportes = Contador::where('nombre', 'contador_reporte')->first();
         $contador_reportes->update(['count' => $contador_reportes->count + 1]);
@@ -40,7 +82,7 @@ class ReporteController extends Controller
         }
 
         return view('reportes.index', compact('contador_reportes', 'usuarios', 'grupos', 'inmuebles', 'revaluos'),
-            ["inmueblesData"=>json_encode($inmueblesData),"revaluosData" => json_encode($revaluosData)]);
+            ["inmueblesData"=>json_encode($inmueblesData),"revaluosData" => json_encode($revaluosData), 'data' => $data ]);
     }
 
     public function create()
