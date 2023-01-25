@@ -41,7 +41,7 @@
                                     <th style="color:#fff;">Responsable</th>
                                     <th style="color:#fff;">Grupo</th>
                                     <th style="color:#fff;">Estado</th>
-                                    <th style="color:#fff;">Dirección</th>
+                                    {{-- <th style="color:#fff;">Dirección</th> --}}
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
@@ -55,11 +55,11 @@
                                 <td>{{ $inmueble->responsable->nombre}} {{ $inmueble->responsable->Apellido}}</td>
                                 <td>{{ $inmueble->grupo->nombre}}</td>
                                 <td>{{ $inmueble->estado->nombre }}</td>
-                                @if($inmueble->direccion!=null)
+                                {{-- @if($inmueble->direccion!=null)
                                     <td>{{ $inmueble->direccion->ubicacion}}</td>
                                 @else
                                     <td>Sin dirección asignada</td>
-                                @endif
+                                @endif --}}
                                 <td>
                                     <form action="{{ route('inmuebles.destroy',$inmueble->id) }}" method="POST" class="form-delete">
                                     @can('editar-inmueble')

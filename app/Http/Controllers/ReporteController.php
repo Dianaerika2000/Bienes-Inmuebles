@@ -123,6 +123,7 @@ class ReporteController extends Controller
         $contador_reportes->update(['count' => $contador_reportes->count + 1]);
         return view('reportes.reporteRevaluoInmueble',compact('tipoBase','activos', 'desde', 'hasta', 'contador_reportes'));
     }
+    
     public function reporteInmueblesDocGrupo(Request $request){
 
         $tipoBase = $request->get('tipo');

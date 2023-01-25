@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <h5 class="card-title">Reportes por fechas</h5>
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>¡Revise los campos! </strong>
@@ -83,18 +83,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            {{-- @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>¡Revise los campos! </strong>
-                                    @foreach ($errors->all() as $error)
-                                        <span class="badge badge-dark">{{ $error }}</span>
-                                    @endforeach
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif --}}
-
+                            <h5 class="card-title">Reportes por grupos</h5>
                             <form action="{{ route('reporteDG') }}" method="POST">
                                 {{ csrf_field() }}
                                 <div class="row">
