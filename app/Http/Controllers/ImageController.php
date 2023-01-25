@@ -22,7 +22,7 @@ class ImageController extends Controller
         $path = public_path().'/images/inmuebles';
         $fileName = uniqid().$file->getClientOriginalName();
         $moved = $file->move($path, $fileName);
-        
+
         // crear 1 registro en la tabla inmueble_images
         if ($moved) {
             $inmuebleImage = new InmuebleImage();

@@ -50,4 +50,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('inmuebles/{id}/imagenes', [ImageController::class, 'store'])->name('imagenes.store');
     Route::delete('inmuebles/{id}/imagenes', [ImageController::class, 'destroy'])->name('imagenes.destroy');
 
+    Route::get('inmuebles/{id}/revaluos/index', [RevaluoController::class, 'index'])->name('revaluos.index');
+    Route::get('inmuebles/{id}/revaluos/create', [RevaluoController::class, 'create'])->name('revaluos.create');
+    Route::post('inmuebles/{id}/revaluos/create', [RevaluoController::class, 'store'])->name('revaluos.store');
+    Route::any('inmuebles/revaluos/edit/{id}', [RevaluoController::class, 'edit'])->name('revaluos.edit');
+    Route::any('inmuebles/revaluos/edit/{id}', [RevaluoController::class, 'update'])->name('revaluos.update');
 });

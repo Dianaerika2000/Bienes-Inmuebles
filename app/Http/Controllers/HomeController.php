@@ -87,9 +87,7 @@ class HomeController extends Controller
 
         $getRevaluos= Revaluo::where('descripcion','like',"%{$request->busqueda}%")
             ->orWhere('fechaRevaluo','like',"%{$request->busqueda}%")
-            ->orWhere('costo','like',"%{$request->busqueda}%")
             ->orWhere('costoActualizado','like',"%{$request->busqueda}%")
-            ->orWhere('depreciacionAcumulada','like',"%{$request->busqueda}%")
             ->orWhere('valorNeto','like',"%{$request->busqueda}%")
             ->orderBy('descripcion','asc')
             ->get();

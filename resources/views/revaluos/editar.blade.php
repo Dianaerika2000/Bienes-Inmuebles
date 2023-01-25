@@ -93,7 +93,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 py-2">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                 <a class="btn btn-secondary" href="{{route('revaluos.index')}}">Cancelar</a>
-                            </div>                      
+                            </div>
                         </div>
                     </form>
 

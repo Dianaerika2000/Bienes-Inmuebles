@@ -198,7 +198,7 @@
             </a>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    @can('ver-revaluo')
+                    {{-- @can('ver-revaluo')
                         <a class="nav-link" href="{{ route('revaluos.index') }}"
                             style="background-color: {{ auth()->user()->color }}">
                             @if (auth()->user()->color === 'white' || auth()->user()->color === 'skyblue')
@@ -212,7 +212,7 @@
                                     style="color:#1c0f5e">Gestionar Revaluos</span>
                             @endif
                         </a>
-                    @endcan
+                    @endcan --}}
                     @can('ver-informe')
                         <a class="nav-link" href="{{ route('informes.index') }}"
                             style="background-color: {{ auth()->user()->color }}">

@@ -12,9 +12,7 @@ class Revaluo extends Model
     protected $fillable=([
         'descripcion',
         'fechaRevaluo',
-        'costo',
         'costoActualizado',
-        'depreciacionAcumulada',
         'valorNeto',
         'idInmueble',
     ]);

@@ -7,6 +7,7 @@ use App\Models\Informe;
 use App\Models\Inmueble;
 use App\Models\Revaluo;
 use Illuminate\Http\Request;
+use PhpParser\Lexer\TokenEmulator\ReverseEmulator;
 
 class RevaluoController extends Controller
 {
@@ -18,64 +19,74 @@ class RevaluoController extends Controller
         $this->middleware('permission:borrar-revaluo', ['only' => ['destroy']]);
     }
 
-    public function index()
+    public function index($id)
     {
-        //$revaluos=Revaluo::paginate(10);
-        $revaluos=Revaluo::all();
+        // dd($id);
+        $inmueble=Inmueble::find($id);
+        $revaluos=Revaluo::where('idInmueble', $id)->get();
         $informes=Informe::all();
         $contador_revaluos=Contador::where('nombre',"contador_inmueble")->first();
         $contador_revaluos->update(['count'=>$contador_revaluos->count+1]);
-        return view('revaluos.index',compact('revaluos','contador_revaluos', 'informes'));
+        return view('revaluos.index',compact('revaluos','contador_revaluos','informes', 'inmueble'));
     }
 
-    public function create()
+    public function create($id)
     {
-        $inmuebles = Inmueble::all();
-        return view('revaluos.crear', compact('inmuebles'));
+        $inmueble = Inmueble::find($id);
+        return view('revaluos.crear', compact('inmueble'));
     }
-
-    public function store(Request $request)
-    {
-        request()->validate([
-            'idInmueble'=>['required','max:100'],
-            'fechaRevaluo' => 'required',
-            'costo' => 'required',
-            'costoActualizado' => 'required',
-            'depreciacionAcumulada' => 'required',
-            'valorNeto' => 'required',
-        ]);
-        Revaluo::create($request->all());
-        return redirect()->route('revaluos.index');
-    }
-
-    public function show(Revaluo $revaluo)
-    {
-        //
-    }
-
-    public function edit(Revaluo $revaluo)
-    {
-        $inmuebles = Inmueble::all();
-        return view('revaluos.editar',compact('revaluo','inmuebles'));
-    }
-
-    public function update(Request $request, Revaluo $revaluo)
+    public function store(Request $request, $id)
     {
         request()->validate([
-            'idInmueble'=>['required','max:100'],
+            // 'idInmueble'=>'required',
             'fechaRevaluo' => 'required',
-            'costo' => 'required',
             'costoActualizado' => 'required',
-            'depreciacionAcumulada' => 'required',
             'valorNeto' => 'required',
         ]);
-        $revaluo->update($request->all());
-        return redirect()->route('revaluos.index');
-    }
+            $revaluo = new Revaluo();
+
+            $revaluo->idInmueble = $id;
+            $revaluo->descripcion = $request->get('descripcion');
+            $revaluo->fechaRevaluo = $request->get('fechaRevaluo');
+            $revaluo->costoActualizado = $request->get('costoActualizado');
+            $revaluo->valorNeto = $request->get('valorNeto');
+            $revaluo->save();
+
+            // Revaluo::create($request->all());
+            return redirect()->route('revaluos.index', $id);
+        }
+
+        public function show(Revaluo $revaluo)
+        {
+            //
+        }
+
+        public function edit(Revaluo $revaluo)
+        {
+            // dd($revaluo);
+            $idInmu= $revaluo->idInmueble;
+            // dd($idInmu);
+            $inmueble = Inmueble::find($idInmu);
+            return view('revaluos.editar',compact('revaluo','inmueble'));
+        }
+
+        public function update(Request $request, $id)
+        {
+            request()->validate([
+                'fechaRevaluo' => 'required',
+                'costoActualizado' => 'required',
+                'valorNeto' => 'required',
+            ]);
+            $revaluo=Revaluo::find($id);
+
+            $revaluo->update($request->all());
+            return redirect()->route('revaluos.index', $revaluo->idInmueble);
+        }
 
     public function destroy(Revaluo $revaluo)
     {
+        $idInmueble = $revaluo->idInmueble;
         $revaluo->delete();
-        return redirect()->route('revaluos.index');
+        return redirect()->route('revaluos.index', $idInmueble);
     }
 }

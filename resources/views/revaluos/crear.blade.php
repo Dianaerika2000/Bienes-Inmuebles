@@ -23,11 +23,15 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('revaluos.store') }}" method="POST">
+                            <div class="alert alert-warning" role="alert">
+                                <strong>CODIGO DE INMUEBLE:</strong> &nbsp;{{$inmueble->codigo}}
+                            </div>
+
+                            <form action="{{ route('revaluos.store', $inmueble->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{--@csrf--}}
                                 <div class="row">
-
+{{--
                                     <div class="col-lg-12 col-sm-12 col-sm-11 col-xs-12">
                                         <label class="col-form-label col-md-12 col-sm-12 label-align" for="idInmueble">Código del Inmueble
                                             <span class="required">*</span>
@@ -40,7 +44,14 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
+{{--
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="idInmueble">{{$inmueble->codigo}}</label>
+                                            <input style="display: none" type="date" name="idInmueble" id="idInmueble" class="form-control" value="{{$inmueble->id}}">
+                                        </div>
+                                    </div> --}}
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <label for="descripcion">Descripción</label>
@@ -56,28 +67,14 @@
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                           <label for="costo">Costo (Bs)</label>
-                                           <input type="number" step='0.01' id="costo" name="costo" required="required" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="costo">Costo Actualizado (Bs)</label>
+                                            <label for="costo">Valor Actualizado en Revaluo (Bs)</label>
                                             <input type="number" step='0.01' id="costoActualizado" name="costoActualizado" required="required" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="costo">Depreciación Acumulada (Bs)</label>
-                                            <input type="number" step='0.01' id="depreciacionAcumulada" name="depreciacionAcumulada" required="required" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="costo">Valor Neto (Bs)</label>
+                                            <label for="costo">Valor anterior del Activo (Bs)</label>
                                             <input type="number" step='0.01' id="valorNeto" name="valorNeto" required="required" class="form-control">
                                         </div>
                                     </div>
@@ -89,7 +86,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 py-2">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
-                                        <a class="btn btn-secondary" href="{{route('revaluos.index')}}">Cancelar</a>
+                                        <a class="btn btn-secondary" href="{{route('revaluos.index', $inmueble->id)}}">Cancelar</a>
                                     </div>
                                 </div>
                             </form>

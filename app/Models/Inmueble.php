@@ -52,4 +52,8 @@ class Inmueble extends Model
     public function images(){
         return $this->hasMany(InmuebleImage::class);
     }
+    // $inmueble -> revaluos
+    public function revaluos(){
+        return $this->hasMany(Revaluo::class);
+    }
 }

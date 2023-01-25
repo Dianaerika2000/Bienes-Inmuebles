@@ -26,9 +26,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
                         @can('crear-revaluo')
-                        <a class="btn btn-warning my-2" href="{{ route('revaluos.create') }}">Nuevo</a>
+                        <a class="btn btn-warning my-2" href="{{ route('revaluos.create',$inmueble->id) }}">Nuevo</a>
                         @endcan
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,11 +35,8 @@
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Descripción</th>
                                     <th style="color:#fff;">Fecha Revaluo</th>
-                                    <th style="color:#fff;">Costo</th>
-                                    <th style="color:#fff;">Costo Actualizado</th>
-                                    <th style="color:#fff;">Depreciación</th>
-                                    <th style="color:#fff;">Valor Neto</th>
-                                    <th style="color:#fff;">Inmueble</th>
+                                    <th style="color:#fff;">Valor Actualizado en Revaluo</th>
+                                    <th style="color:#fff;">Valor anterior del Activo</th>
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
@@ -49,17 +45,13 @@
                                 <td style="display: none;">{{ $revaluo->id }}</td>
                                 <td>{{ $revaluo->descripcion }}</td>
                                 <td>{{ $revaluo->fechaRevaluo }}</td>
-                                <td>{{ $revaluo->costo }} Bs.</td>
                                 <td>{{ $revaluo->costoActualizado }} Bs.</td>
-                                <td>{{ $revaluo->depreciacionAcumulada }} Bs.</td>
                                 <td>{{ $revaluo->valorNeto }} Bs.</td>
-                                <td>{{ $revaluo->inmueble->codigo }} - {{ $revaluo->inmueble->descripcionGlosa }}</td>
                                 <td>
                                     <form action="{{ route('revaluos.destroy',$revaluo->id) }}" method="POST" class="form-delete">
                                     @can('editar-revaluo')
                                         <a class="btn btn-info" href="{{ route('revaluos.edit',$revaluo->id) }}">Editar</a>
                                     @endcan
-
                                         @csrf
                                         @method('DELETE')
                                     @can('borrar-revaluo')

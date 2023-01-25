@@ -326,9 +326,7 @@
                                                 <tr>
                                                     <th>Descripción</th>
                                                     <th>Fecha Revaluo</th>
-                                                    <th>Costo</th>
                                                     <th>Costo Actualizado</th>
-                                                    <th>Depreciación</th>
                                                     <th>Valor Neto</th>
                                                 </tr>
                                                 </thead>
@@ -337,9 +335,7 @@
                                                     <tr>
                                                         <td>{{ $revaluo->descripcion }}</td>
                                                         <td>{{ $revaluo->fechaRevaluo }}</td>
-                                                        <td>{{ $revaluo->costo }} Bs.</td>
                                                         <td>{{ $revaluo->costoActualizado }} Bs.</td>
-                                                        <td>{{ $revaluo->depreciacionAcumulada }} Bs.</td>
                                                         <td>{{ $revaluo->valorNeto }} Bs.</td>
                                                     </tr>
                                                 @endforeach
