@@ -1,7 +1,6 @@
-@extends('layouts.auth_app')
-@section('title')
-    Register
-@endsection
+@extends('adminlte::auth.register')
+@section('title', 'Register')
+
 @section('content')
     <div class="card card-primary">
         <div class="card-header"><h4>Registrar usuario invitado</h4></div>

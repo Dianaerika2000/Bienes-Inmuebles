@@ -1,5 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
+@section('title', 'Fotografias')
 @section('datatable_css')
 
 <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -18,9 +19,9 @@
 
 @section('content')
     <section class="section">
-        <div class="section-header" style="background-color: {{ auth()->user()->color}}">
+        @section('content_header')
             <h3 class="page__heading">Fotografías</h3>
-        </div>
+        @stop
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">

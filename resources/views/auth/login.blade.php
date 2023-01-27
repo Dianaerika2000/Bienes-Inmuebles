@@ -1,7 +1,6 @@
-@extends('layouts.auth_app')
-@section('title')
-    UAGRM
-@endsection
+@extends('adminlte::auth.login')
+@section('title', 'UAGRM')
+
 @section('content')
     <div class="card card-primary">
         <div class="card-header"><h4>UAGRM</h4></div>

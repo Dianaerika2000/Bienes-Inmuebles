@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('title', 'Crear Direccion')
 
 @section('datatable_css')
     <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -16,10 +17,12 @@
 @endsection
 
 @section('content')
+
     <section class="section">
-        <div class="section-header" style="background-color: {{ auth()->user()->color }}">
-            <h3 class="page__heading">Gestionar Direcciones</h3>
-        </div>
+    @section('content_header')
+        <h3 class="page__heading">Gestionar Direcciones</h3>
+    @stop
+
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">

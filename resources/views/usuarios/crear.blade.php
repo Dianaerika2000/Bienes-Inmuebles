@@ -1,14 +1,15 @@
-@extends('layouts.app')
-
+@extends('adminlte::page')
+@section('title', 'Usuarios')
 {{-- @section('css')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 @endsection --}}
 
 @section('content')
     <section class="section">
-        <div class="section-header" style="background-color: {{ auth()->user()->color }}">
-            <h3 class="page__heading">Registrar Usuario</h3>
-        </div>
+        @section('content_header')
+        <h3 class="page__heading">Registrar Usuario</h3>
+        @stop
+
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">

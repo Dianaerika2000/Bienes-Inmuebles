@@ -75,9 +75,11 @@
     <div class="main-wrapper main-wrapper-1">
         <div class="navbar-bg"></div>
 
-        <nav class="navbar navbar-expand-lg main-navbar">
-            @include('layouts.header')
-        </nav>
+        @section('content_header')
+            <nav class="navbar navbar-expand-lg main-navbar">
+                @include('layouts.header')
+            </nav>
+        @stop
 
         <div class="main-sidebar main-sidebar-postion">
             @include('layouts.sidebar')

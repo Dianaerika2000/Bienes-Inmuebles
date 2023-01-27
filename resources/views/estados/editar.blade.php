@@ -1,10 +1,14 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
 
+@extends('adminlte::page')
+@section('title', 'Editar estado')
 @section('content')
     <section class="section">
-        <div class="section-header" style="background-color: {{ auth()->user()->color}}">
-            <h3 class="page__heading">Editar Estado {{$estado->nombre}}</h3>
-        </div>
+
+    @section('content_header')
+        <h3 class="page__heading">Editar Estado {{$estado->nombre}}</h3>
+    @stop
+
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
@@ -44,7 +48,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                 <a class="btn btn-secondary" href="{{route('estados.index')}}">Cancelar</a>
-                            </div>                           
+                            </div>
                         </div>
                     </form>
 
