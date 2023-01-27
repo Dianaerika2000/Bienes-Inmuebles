@@ -1,11 +1,10 @@
-@extends('adminlte::page')
-@section('title', 'Editar fotografia')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">
-        @section('content_header')
+        <div class="section-header" style="background-color: {{ auth()->user()->color}}">
             <h3 class="page__heading">Editar Asignación de Fotografía</h3>
-        @stop
+        </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
@@ -75,7 +74,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                 <a class="btn btn-secondary" href="{{route('fotografias.index')}}">Cancelar</a>
-                            </div>
+                            </div>                          
                         </div>
                     </form>
 

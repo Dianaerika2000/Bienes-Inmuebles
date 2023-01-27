@@ -1,6 +1,4 @@
-@extends('adminlte::page')
-
-@section('title', 'Editar Direccion')
+@extends('layouts.app')
 
 @section('content')
     <style>
@@ -13,9 +11,9 @@
     </style>
 
     <section class="section">
-        @section('content_header')
+        <div class="section-header" style="background-color: {{ auth()->user()->color}}">
             <h3 class="page__heading">Editar Dirección</h3>
-        @stop
+        </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">

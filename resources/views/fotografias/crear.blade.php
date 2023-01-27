@@ -1,13 +1,10 @@
-@extends('adminlte::page')
-
-@section('title', 'Crear fotografia')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">
-    @section('content_header')
-        <h3 class="page__heading">Asignar Fotografía</h3>
-    @stop
-
+        <div class="section-header" style="background-color: {{ auth()->user()->color}}">
+            <h3 class="page__heading">Asignar Fotografía</h3>
+        </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">

@@ -1,5 +1,4 @@
-@extends('adminlte::page')
-@section('title', 'Fotogragias')
+@extends('layouts.app')
 
 @section('datatable_css')
     <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -21,10 +20,9 @@
 
 @section('content')
     <section class="section">
-        @section('content_header')
-        <h3 class="page__heading">Fotografías del Inmueble</h3>
-        @stop
-
+        <div class="section-header" style="background-color: {{ auth()->user()->color }}">
+            <h3 class="page__heading">Fotografías del Inmueble</h3>
+        </div>
         <div class="section-body">
             <a class="btn btn-primary btn-lg my-2" href="{{ route('inmuebles.index') }}">
                 <i class="bi bi-arrow-left-circle-fill"></i>

@@ -1,11 +1,10 @@
-@extends('adminlte::page')
-@section('title', 'Roles')
+@extends('layouts.app')
+
 @section('content')
     <section class="section">
-        @section('content_header')
-        <h3 class="page__heading">Crear Rol</h3>
-        @stop
-        
+        <div class="section-header" style="background-color: {{ auth()->user()->color}}">
+            <h3 class="page__heading">Crear Rol</h3>
+        </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
@@ -29,7 +28,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Nombre del Rol:</label>
+                                    <label for="">Nombre del Rol:</label>                                    
                                     {!! Form::text('name', null, array('class' => 'form-control')) !!}
                                 </div>
                             </div>
@@ -43,7 +42,7 @@
                                     <br/>
                                     @endforeach
                                 </div>
-                            </div>
+                            </div>        
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                         <a class="btn btn-secondary" href="{{route('roles.index')}}">Cancelar</a>

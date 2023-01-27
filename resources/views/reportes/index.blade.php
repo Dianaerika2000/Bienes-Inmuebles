@@ -1,15 +1,14 @@
-@extends('adminlte::page')
-@section('title', 'Reportes')
+@extends('layouts.app')
+
 @section('content')
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('inventario/images/favicon.png') }}">
     <link href="{{ asset('inventario/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('inventario/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/css/bootstrap.min.css" title="main">
     <section class="section">
-        @section('content_header')
-        <h3>Estadisticas de Inmuebles y Revaluos</h3>
-        @stop
-        
+        <div class="section-header">
+            <h3>Estadisticas de Inmuebles y Revaluos</h3>
+        </div>
         <div class="section-body">
             <div class="card">
                 <div class="card-header bg-primary text-light">
